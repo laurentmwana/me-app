@@ -46,8 +46,6 @@ function Page() {
   const navigate = Route.useNavigate();
   const { count, items: profiles } = Route.useLoaderData();
 
-  console.log(count, profiles);
-
   // État local pour réagir instantanément dans l'input
   const [searchTerm, setSearchTerm] = useState(search.q || "");
 

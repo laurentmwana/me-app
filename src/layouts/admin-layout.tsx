@@ -1,6 +1,7 @@
 import {
   Briefcase,
   Code2,
+  FileText,
   FolderKanban,
   GraduationCap,
   Home,
@@ -43,13 +44,13 @@ const mainItems: GroupNavItem[] = [
       },
       {
         href: "/admin/works",
-        title: "Work Experience",
+        				title: "Expériences",
         isShow: true,
         icon: Briefcase,
       },
       {
         href: "/admin/educations",
-        title: "Education",
+        				title: "Formations",
         isShow: true,
         icon: GraduationCap,
       },
@@ -62,7 +63,7 @@ const mainItems: GroupNavItem[] = [
     children: [
       {
         href: "/admin/projects",
-        title: "Project",
+        				title: "Projets",
         isShow: true,
         icon: FolderKanban,
       },
@@ -71,6 +72,19 @@ const mainItems: GroupNavItem[] = [
         title: "Compétences",
         isShow: true,
         icon: Code2,
+      },
+    ],
+  },
+  {
+    title: "Documents",
+    icon: FileText,
+    isShow: true,
+    children: [
+      {
+        href: "/admin/cvs",
+        title: "CVs",
+        isShow: true,
+        icon: FileText,
       },
     ],
   },
@@ -96,12 +110,12 @@ const navUserItems: NavItem[] = [
     href: "/dashboard",
   },
   {
-    title: "Experiences",
+    		title: "Expériences",
     icon: Briefcase,
     href: "/admin/works",
   },
   {
-    title: "Educations",
+    		title: "Formations",
     icon: GraduationCap,
     href: "/admin/educations",
   },

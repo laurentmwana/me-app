@@ -35,7 +35,7 @@ export function DeleteResourceDialog({
 	confirmationLabel,
 	title,
 	description,
-	actionLabel = "Delete",
+	actionLabel = "Supprimer",
 	onConfirm,
 	trigger,
 	open: controlledOpen,
@@ -83,15 +83,14 @@ export function DeleteResourceDialog({
 			) : null}
 			<DialogContent showCloseButton={!isPending}>
 				<DialogHeader>
-					<DialogTitle>{title ?? `Delete ${resourceName}`}</DialogTitle>
+					<DialogTitle>{title ?? `Supprimer ${resourceName}`}</DialogTitle>
 					<DialogDescription>
 						{description ?? (
-							<>
-								This action cannot be undone. This will permanently delete{" "}
+														<>Cette action est irréversible. Elle supprimera définitivement{" "}
 								<span className="font-medium text-foreground">
 									{resourceName}
 								</span>{" "}
-								and all of its associated data.
+								et toutes les données associées.
 							</>
 						)}
 					</DialogDescription>
@@ -100,12 +99,11 @@ export function DeleteResourceDialog({
 				<Field>
 					<FieldLabel htmlFor="delete-confirmation">
 						{confirmationLabel ?? (
-							<>
-								To confirm, type{" "}
+														<>Pour confirmer, saisissez{" "}
 								<span className="font-mono font-medium text-foreground">
 									{expected}
 								</span>{" "}
-								below
+								ci-dessous
 							</>
 						)}
 					</FieldLabel>
@@ -134,7 +132,7 @@ export function DeleteResourceDialog({
 					<DialogClose
 						render={
 							<Button variant="outline" disabled={isPending}>
-								Cancel
+								Annuler
 							</Button>
 						}
 					/>
@@ -146,7 +144,7 @@ export function DeleteResourceDialog({
 						{isPending ? (
 							<>
 								<Spinner data-icon="inline-start" />
-								Deleting...
+								Suppression...
 							</>
 						) : (
 							actionLabel

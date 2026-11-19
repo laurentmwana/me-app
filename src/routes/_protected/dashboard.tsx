@@ -4,25 +4,23 @@ import { countEducations } from "#/actions/education.action";
 import { countProjects } from "#/actions/project.action";
 import { countSkills } from "#/actions/skill.action";
 import { Skeleton } from "#/components/ui/skeleton";
-import { PostChartAreaInteractive } from "#/features/dashboard/chart-area-interactive";
 import { StatsCard } from "#/features/dashboard/stat-card";
 import { AdminLayout } from "#/layouts/admin-layout";
 
 export const Route = createFileRoute("/_protected/dashboard")({
   component: Page,
   loader: async () => {
-    return {
-      projects: await countProjects({ data: { isPublished: true } }),
-      skills: await countSkills({ data: { isPublished: true } }),
-      educations: await countEducations({ data: { isPublished: true } }),
-      posts: 125,
-    };
+    	return {
+		projects: await countProjects({ data: { isPublished: true } }),
+		skills: await countSkills({ data: { isPublished: true } }),
+		educations: await countEducations({ data: { isPublished: true } }),
+	};
   },
   pendingComponent: () => {
     return (
       <Layout>
         <div className="flex flex-col gap-4">
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
             <Skeleton className="w-full h-32" />
             <Skeleton className="w-full h-32" />
             <Skeleton className="w-full h-32" />
@@ -36,12 +34,12 @@ export const Route = createFileRoute("/_protected/dashboard")({
 });
 
 function Page() {
-  const { projects, skills, educations, posts } = Route.useLoaderData();
+  	const { projects, skills, educations } = Route.useLoaderData();
 
   return (
     <Layout>
       <div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
           <StatsCard
             title="Projets"
             value={projects}
@@ -60,14 +58,7 @@ function Page() {
             description="Nombre d'expériences"
             to="/admin/educations"
           />
-          <StatsCard
-            title="Articles"
-            value={posts}
-            description="Nombre d'articles"
-            to="/admin/posts"
-          />
         </div>
-        <PostChartAreaInteractive />
       </div>
     </Layout>
   );

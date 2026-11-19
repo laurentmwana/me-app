@@ -53,7 +53,9 @@ export const SkillsTable = ({ skills }: SkillsTableProps) => {
 		return (
 			<DefaultDataEmpty>
 				<div className="flex items-center gap-3">
-					<Button variant="outline">Nouvelle Compétence</Button>
+					<ButtonLink variant="outline" href="/admin/skills/new">
+						Nouvelle Compétence
+					</ButtonLink>
 				</div>
 			</DefaultDataEmpty>
 		);

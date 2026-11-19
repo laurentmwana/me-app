@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "@tanstack/react-router";
 import { Pen, Trash } from "lucide-react";
-import { useState } from "react";
 import { toast } from "sonner";
 import { deleteProfileFn } from "#/actions/my-profile.action";
 import { Badge } from "#/components/ui/badge";
@@ -26,20 +25,17 @@ type ProfilesTableProps = {
 };
 
 export const ProfilesTable = ({ profiles }: ProfilesTableProps) => {
-  const navigate = useNavigate();
-  const [selectedProfileId, setSelectedProfileId] = useState<string | null>(
-    null,
-  );
+  	const navigate = useNavigate();
 
-  const deleteMutation = useMutation({
+	const deleteMutation = useMutation({
     mutationFn: async (profileId: string) => {
       return await deleteProfileFn({
         data: { id: profileId },
       });
     },
     onSuccess: async () => {
-      toast.success("Votre profil a été supprimé");
-      setSelectedProfileId(null);
+      		toast.success("Votre profil a été supprimé");
+
       await navigate({ to: "/admin/profiles" });
     },
     onError: (error) => {
@@ -52,9 +48,11 @@ export const ProfilesTable = ({ profiles }: ProfilesTableProps) => {
   if (!Array.isArray(profiles) || profiles.length === 0) {
     return (
       <DefaultDataEmpty>
-        <div className="flex items-center gap-3">
-          <Button variant="outline">Nouveau Profil</Button>
-        </div>
+        		<div className="flex items-center gap-3">
+			<ButtonLink variant="outline" href="/admin/profiles/new">
+				Nouveau Profil
+			</ButtonLink>
+		</div>
       </DefaultDataEmpty>
     );
   }
@@ -104,8 +102,8 @@ export const ProfilesTable = ({ profiles }: ProfilesTableProps) => {
                         size="icon"
                         className="h-8 w-8"
                         disabled={
-                          deleteMutation.isPending &&
-                          selectedProfileId === profile.id
+                          											deleteMutation.isPending
+
                         }
                       >
                         <Trash className="size-4" />

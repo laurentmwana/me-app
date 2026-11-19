@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { optionalUrl } from "#/lib/validators";
 
 export const profileSchema = z.object({
 	title: z
@@ -9,8 +10,8 @@ export const profileSchema = z.object({
 		.string()
 		.min(2, "La description doit contenir au moins 2 caractères"),
 	content: z.string().optional(),
-	imageUrl: z.string().url("URL d'image invalide").optional().or(z.literal("")),
-	pdfUrl: z.string().url("URL du PDF invalide").optional().or(z.literal("")),
+	imageUrl: optionalUrl,
+	pdfUrl: optionalUrl,
 	isPublished: z.boolean().default(false),
 });
 

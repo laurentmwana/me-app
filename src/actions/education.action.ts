@@ -1,6 +1,7 @@
 // #/actions/education.action.ts
 import { createServerFn } from "@tanstack/react-start";
 import { prisma } from "#/lib/prisma";
+import type { EducationValues } from "#/schemas/education.schema";
 
 export const findLatestPublishedEducationsFn = createServerFn({ method: "GET" })
 	.validator((data: { limit?: number }) => data)
@@ -87,4 +88,106 @@ export const countEducations = createServerFn({ method: "GET" })
 		}
 
 		return await prisma.education.count();
+	});
+
+export const findPaginatedEducations = createServerFn({ method: "GET" })
+	.validator(
+		(data: {
+			limit?: number;
+			page?: number;
+			offset?: number;
+			orderBy?: string;
+			direction?: string;
+			search?: string | null;
+		}) => data,
+	)
+	.handler(
+		async ({
+			data = {
+				limit: 12,
+				page: 1,
+				offset: 0,
+				orderBy: "createdAt",
+				direction: "desc",
+			},
+		}) => {
+			const searchCondition = data.search
+				? {
+						OR: [
+							{ school: { contains: data.search, mode: "insensitive" as const } },
+							{ degree: { contains: data.search, mode: "insensitive" as const } },
+							{
+								description: {
+									contains: data.search,
+									mode: "insensitive" as const,
+								},
+							},
+						],
+					}
+				: {};
+
+			const [count, items] = await prisma.$transaction([
+				prisma.education.count({ where: searchCondition }),
+				prisma.education.findMany({
+					where: searchCondition,
+					orderBy: {
+						[data.orderBy as keyof typeof prisma.education.fields]: data.direction,
+					},
+					take: data.limit,
+					skip: data.offset,
+					include: { grades: true },
+				}),
+			]);
+			return { count, items };
+		},
+	);
+
+export const findEducation = createServerFn({ method: "GET" })
+	.validator((data: { id: string }) => data)
+	.handler(async ({ data }) => {
+		return await prisma.education.findFirstOrThrow({
+			where: { id: data.id },
+			include: { grades: true },
+		});
+	});
+
+export const createEducation = createServerFn({ method: "POST" })
+	.validator((data: EducationValues) => data)
+	.handler(async ({ data }) => {
+		return await prisma.education.create({
+			data: {
+				school: data.school,
+				degree: data.degree,
+				description: data.description || null,
+				href: data.href || null,
+				logoUrl: data.logoUrl || null,
+				start: new Date(data.start),
+				end: data.end ? new Date(data.end) : null,
+				isPublished: data.isPublished,
+			},
+		});
+	});
+
+export const updateEducation = createServerFn({ method: "POST" })
+	.validator((data: { id: string; formData: EducationValues }) => data)
+	.handler(async ({ data }) => {
+		return await prisma.education.update({
+			where: { id: data.id },
+			data: {
+				school: data.formData.school,
+				degree: data.formData.degree,
+				description: data.formData.description || null,
+				href: data.formData.href || null,
+				logoUrl: data.formData.logoUrl || null,
+				start: new Date(data.formData.start),
+				end: data.formData.end ? new Date(data.formData.end) : null,
+				isPublished: data.formData.isPublished,
+			},
+		});
+	});
+
+export const deleteEducation = createServerFn({ method: "POST" })
+	.validator((data: { id: string }) => data)
+	.handler(async ({ data }) => {
+		return await prisma.education.delete({ where: { id: data.id } });
 	});
