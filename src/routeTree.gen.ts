@@ -31,14 +31,28 @@ import { Route as PortofolioWorksIdRouteImport } from './routes/_portofolio/work
 import { Route as ProtectedAdminAboutRouteImport } from './routes/_protected/admin/about'
 import { Route as ProtectedAdminContactRouteImport } from './routes/_protected/admin/contact'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
+import { Route as ProtectedAdminCvsIndexRouteImport } from './routes/_protected/admin/cvs/index'
+import { Route as ProtectedAdminCvsNewRouteImport } from './routes/_protected/admin/cvs/new'
 import { Route as ProtectedAdminEducationsIndexRouteImport } from './routes/_protected/admin/educations/index'
+import { Route as ProtectedAdminEducationsNewRouteImport } from './routes/_protected/admin/educations/new'
 import { Route as ProtectedAdminHackathonsIndexRouteImport } from './routes/_protected/admin/hackathons/index'
-import { Route as ProtectedAdminPostsIndexRouteImport } from './routes/_protected/admin/posts/index'
+import { Route as ProtectedAdminHackathonsNewRouteImport } from './routes/_protected/admin/hackathons/new'
+import { Route as ProtectedAdminProfilesIndexRouteImport } from './routes/_protected/admin/profiles/index'
+import { Route as ProtectedAdminProfilesNewRouteImport } from './routes/_protected/admin/profiles/new'
 import { Route as ProtectedAdminProjectsIndexRouteImport } from './routes/_protected/admin/projects/index'
+import { Route as ProtectedAdminProjectsNewRouteImport } from './routes/_protected/admin/projects/new'
 import { Route as ProtectedAdminSkillsIndexRouteImport } from './routes/_protected/admin/skills/index'
 import { Route as ProtectedAdminSkillsNewRouteImport } from './routes/_protected/admin/skills/new'
 import { Route as ProtectedAdminWorksIndexRouteImport } from './routes/_protected/admin/works/index'
+import { Route as ProtectedAdminWorksNewRouteImport } from './routes/_protected/admin/works/new'
+import { Route as ProtectedAdminCvsIdEditRouteImport } from './routes/_protected/admin/cvs/$id.edit'
+import { Route as ProtectedAdminEducationsIdEditRouteImport } from './routes/_protected/admin/educations/$id.edit'
+import { Route as ProtectedAdminHackathonsIdEditRouteImport } from './routes/_protected/admin/hackathons/$id.edit'
+import { Route as ProtectedAdminProfilesIdIndexRouteImport } from './routes/_protected/admin/profiles/$id/index'
+import { Route as ProtectedAdminProfilesIdEditRouteImport } from './routes/_protected/admin/profiles/$id/edit'
+import { Route as ProtectedAdminProjectsIdEditRouteImport } from './routes/_protected/admin/projects/$id.edit'
 import { Route as ProtectedAdminSkillsIdEditRouteImport } from './routes/_protected/admin/skills/$id.edit'
+import { Route as ProtectedAdminWorksIdEditRouteImport } from './routes/_protected/admin/works/$id.edit'
 
 const GuestRoute = GuestRouteImport.update({
   id: '/_guest',
@@ -149,10 +163,26 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
   path: '/api/auth/$',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProtectedAdminCvsIndexRoute = ProtectedAdminCvsIndexRouteImport.update({
+  id: '/admin/cvs/',
+  path: '/admin/cvs/',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedAdminCvsNewRoute = ProtectedAdminCvsNewRouteImport.update({
+  id: '/admin/cvs/new',
+  path: '/admin/cvs/new',
+  getParentRoute: () => ProtectedRoute,
+} as any)
 const ProtectedAdminEducationsIndexRoute =
   ProtectedAdminEducationsIndexRouteImport.update({
     id: '/admin/educations/',
     path: '/admin/educations/',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedAdminEducationsNewRoute =
+  ProtectedAdminEducationsNewRouteImport.update({
+    id: '/admin/educations/new',
+    path: '/admin/educations/new',
     getParentRoute: () => ProtectedRoute,
   } as any)
 const ProtectedAdminHackathonsIndexRoute =
@@ -161,16 +191,34 @@ const ProtectedAdminHackathonsIndexRoute =
     path: '/admin/hackathons/',
     getParentRoute: () => ProtectedRoute,
   } as any)
-const ProtectedAdminPostsIndexRoute =
-  ProtectedAdminPostsIndexRouteImport.update({
-    id: '/admin/posts/',
-    path: '/admin/posts/',
+const ProtectedAdminHackathonsNewRoute =
+  ProtectedAdminHackathonsNewRouteImport.update({
+    id: '/admin/hackathons/new',
+    path: '/admin/hackathons/new',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedAdminProfilesIndexRoute =
+  ProtectedAdminProfilesIndexRouteImport.update({
+    id: '/admin/profiles/',
+    path: '/admin/profiles/',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedAdminProfilesNewRoute =
+  ProtectedAdminProfilesNewRouteImport.update({
+    id: '/admin/profiles/new',
+    path: '/admin/profiles/new',
     getParentRoute: () => ProtectedRoute,
   } as any)
 const ProtectedAdminProjectsIndexRoute =
   ProtectedAdminProjectsIndexRouteImport.update({
     id: '/admin/projects/',
     path: '/admin/projects/',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedAdminProjectsNewRoute =
+  ProtectedAdminProjectsNewRouteImport.update({
+    id: '/admin/projects/new',
+    path: '/admin/projects/new',
     getParentRoute: () => ProtectedRoute,
   } as any)
 const ProtectedAdminSkillsIndexRoute =
@@ -190,10 +238,56 @@ const ProtectedAdminWorksIndexRoute =
     path: '/admin/works/',
     getParentRoute: () => ProtectedRoute,
   } as any)
+const ProtectedAdminWorksNewRoute = ProtectedAdminWorksNewRouteImport.update({
+  id: '/admin/works/new',
+  path: '/admin/works/new',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedAdminCvsIdEditRoute = ProtectedAdminCvsIdEditRouteImport.update({
+  id: '/admin/cvs/$id/edit',
+  path: '/admin/cvs/$id/edit',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedAdminEducationsIdEditRoute =
+  ProtectedAdminEducationsIdEditRouteImport.update({
+    id: '/admin/educations/$id/edit',
+    path: '/admin/educations/$id/edit',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedAdminHackathonsIdEditRoute =
+  ProtectedAdminHackathonsIdEditRouteImport.update({
+    id: '/admin/hackathons/$id/edit',
+    path: '/admin/hackathons/$id/edit',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedAdminProfilesIdIndexRoute =
+  ProtectedAdminProfilesIdIndexRouteImport.update({
+    id: '/admin/profiles/$id/',
+    path: '/admin/profiles/$id/',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedAdminProfilesIdEditRoute =
+  ProtectedAdminProfilesIdEditRouteImport.update({
+    id: '/admin/profiles/$id/edit',
+    path: '/admin/profiles/$id/edit',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedAdminProjectsIdEditRoute =
+  ProtectedAdminProjectsIdEditRouteImport.update({
+    id: '/admin/projects/$id/edit',
+    path: '/admin/projects/$id/edit',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
 const ProtectedAdminSkillsIdEditRoute =
   ProtectedAdminSkillsIdEditRouteImport.update({
     id: '/admin/skills/$id/edit',
     path: '/admin/skills/$id/edit',
+    getParentRoute: () => ProtectedRoute,
+  } as any)
+const ProtectedAdminWorksIdEditRoute =
+  ProtectedAdminWorksIdEditRouteImport.update({
+    id: '/admin/works/$id/edit',
+    path: '/admin/works/$id/edit',
     getParentRoute: () => ProtectedRoute,
   } as any)
 
@@ -217,14 +311,28 @@ export interface FileRoutesByFullPath {
   '/hackathons/': typeof PortofolioHackathonsIndexRoute
   '/projects/': typeof PortofolioProjectsIndexRoute
   '/works/': typeof PortofolioWorksIndexRoute
+  '/admin/cvs/new': typeof ProtectedAdminCvsNewRoute
+  '/admin/educations/new': typeof ProtectedAdminEducationsNewRoute
+  '/admin/hackathons/new': typeof ProtectedAdminHackathonsNewRoute
+  '/admin/profiles/new': typeof ProtectedAdminProfilesNewRoute
+  '/admin/projects/new': typeof ProtectedAdminProjectsNewRoute
   '/admin/skills/new': typeof ProtectedAdminSkillsNewRoute
+  '/admin/works/new': typeof ProtectedAdminWorksNewRoute
+  '/admin/cvs/': typeof ProtectedAdminCvsIndexRoute
   '/admin/educations/': typeof ProtectedAdminEducationsIndexRoute
   '/admin/hackathons/': typeof ProtectedAdminHackathonsIndexRoute
-  '/admin/posts/': typeof ProtectedAdminPostsIndexRoute
+  '/admin/profiles/': typeof ProtectedAdminProfilesIndexRoute
   '/admin/projects/': typeof ProtectedAdminProjectsIndexRoute
   '/admin/skills/': typeof ProtectedAdminSkillsIndexRoute
   '/admin/works/': typeof ProtectedAdminWorksIndexRoute
+  '/admin/cvs/$id/edit': typeof ProtectedAdminCvsIdEditRoute
+  '/admin/educations/$id/edit': typeof ProtectedAdminEducationsIdEditRoute
+  '/admin/hackathons/$id/edit': typeof ProtectedAdminHackathonsIdEditRoute
+  '/admin/profiles/$id/edit': typeof ProtectedAdminProfilesIdEditRoute
+  '/admin/projects/$id/edit': typeof ProtectedAdminProjectsIdEditRoute
   '/admin/skills/$id/edit': typeof ProtectedAdminSkillsIdEditRoute
+  '/admin/works/$id/edit': typeof ProtectedAdminWorksIdEditRoute
+  '/admin/profiles/$id/': typeof ProtectedAdminProfilesIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof PortofolioIndexRoute
@@ -246,14 +354,28 @@ export interface FileRoutesByTo {
   '/hackathons': typeof PortofolioHackathonsIndexRoute
   '/projects': typeof PortofolioProjectsIndexRoute
   '/works': typeof PortofolioWorksIndexRoute
+  '/admin/cvs/new': typeof ProtectedAdminCvsNewRoute
+  '/admin/educations/new': typeof ProtectedAdminEducationsNewRoute
+  '/admin/hackathons/new': typeof ProtectedAdminHackathonsNewRoute
+  '/admin/profiles/new': typeof ProtectedAdminProfilesNewRoute
+  '/admin/projects/new': typeof ProtectedAdminProjectsNewRoute
   '/admin/skills/new': typeof ProtectedAdminSkillsNewRoute
+  '/admin/works/new': typeof ProtectedAdminWorksNewRoute
+  '/admin/cvs': typeof ProtectedAdminCvsIndexRoute
   '/admin/educations': typeof ProtectedAdminEducationsIndexRoute
   '/admin/hackathons': typeof ProtectedAdminHackathonsIndexRoute
-  '/admin/posts': typeof ProtectedAdminPostsIndexRoute
+  '/admin/profiles': typeof ProtectedAdminProfilesIndexRoute
   '/admin/projects': typeof ProtectedAdminProjectsIndexRoute
   '/admin/skills': typeof ProtectedAdminSkillsIndexRoute
   '/admin/works': typeof ProtectedAdminWorksIndexRoute
+  '/admin/cvs/$id/edit': typeof ProtectedAdminCvsIdEditRoute
+  '/admin/educations/$id/edit': typeof ProtectedAdminEducationsIdEditRoute
+  '/admin/hackathons/$id/edit': typeof ProtectedAdminHackathonsIdEditRoute
+  '/admin/profiles/$id/edit': typeof ProtectedAdminProfilesIdEditRoute
+  '/admin/projects/$id/edit': typeof ProtectedAdminProjectsIdEditRoute
   '/admin/skills/$id/edit': typeof ProtectedAdminSkillsIdEditRoute
+  '/admin/works/$id/edit': typeof ProtectedAdminWorksIdEditRoute
+  '/admin/profiles/$id': typeof ProtectedAdminProfilesIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -279,14 +401,28 @@ export interface FileRoutesById {
   '/_portofolio/hackathons/': typeof PortofolioHackathonsIndexRoute
   '/_portofolio/projects/': typeof PortofolioProjectsIndexRoute
   '/_portofolio/works/': typeof PortofolioWorksIndexRoute
+  '/_protected/admin/cvs/new': typeof ProtectedAdminCvsNewRoute
+  '/_protected/admin/educations/new': typeof ProtectedAdminEducationsNewRoute
+  '/_protected/admin/hackathons/new': typeof ProtectedAdminHackathonsNewRoute
+  '/_protected/admin/profiles/new': typeof ProtectedAdminProfilesNewRoute
+  '/_protected/admin/projects/new': typeof ProtectedAdminProjectsNewRoute
   '/_protected/admin/skills/new': typeof ProtectedAdminSkillsNewRoute
+  '/_protected/admin/works/new': typeof ProtectedAdminWorksNewRoute
+  '/_protected/admin/cvs/': typeof ProtectedAdminCvsIndexRoute
   '/_protected/admin/educations/': typeof ProtectedAdminEducationsIndexRoute
   '/_protected/admin/hackathons/': typeof ProtectedAdminHackathonsIndexRoute
-  '/_protected/admin/posts/': typeof ProtectedAdminPostsIndexRoute
+  '/_protected/admin/profiles/': typeof ProtectedAdminProfilesIndexRoute
   '/_protected/admin/projects/': typeof ProtectedAdminProjectsIndexRoute
   '/_protected/admin/skills/': typeof ProtectedAdminSkillsIndexRoute
   '/_protected/admin/works/': typeof ProtectedAdminWorksIndexRoute
+  '/_protected/admin/cvs/$id/edit': typeof ProtectedAdminCvsIdEditRoute
+  '/_protected/admin/educations/$id/edit': typeof ProtectedAdminEducationsIdEditRoute
+  '/_protected/admin/hackathons/$id/edit': typeof ProtectedAdminHackathonsIdEditRoute
+  '/_protected/admin/profiles/$id/edit': typeof ProtectedAdminProfilesIdEditRoute
+  '/_protected/admin/projects/$id/edit': typeof ProtectedAdminProjectsIdEditRoute
   '/_protected/admin/skills/$id/edit': typeof ProtectedAdminSkillsIdEditRoute
+  '/_protected/admin/works/$id/edit': typeof ProtectedAdminWorksIdEditRoute
+  '/_protected/admin/profiles/$id/': typeof ProtectedAdminProfilesIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -310,14 +446,28 @@ export interface FileRouteTypes {
     | '/hackathons/'
     | '/projects/'
     | '/works/'
+    | '/admin/cvs/new'
+    | '/admin/educations/new'
+    | '/admin/hackathons/new'
+    | '/admin/profiles/new'
+    | '/admin/projects/new'
     | '/admin/skills/new'
+    | '/admin/works/new'
+    | '/admin/cvs/'
     | '/admin/educations/'
     | '/admin/hackathons/'
-    | '/admin/posts/'
+    | '/admin/profiles/'
     | '/admin/projects/'
     | '/admin/skills/'
     | '/admin/works/'
+    | '/admin/cvs/$id/edit'
+    | '/admin/educations/$id/edit'
+    | '/admin/hackathons/$id/edit'
+    | '/admin/profiles/$id/edit'
+    | '/admin/projects/$id/edit'
     | '/admin/skills/$id/edit'
+    | '/admin/works/$id/edit'
+    | '/admin/profiles/$id/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -339,14 +489,28 @@ export interface FileRouteTypes {
     | '/hackathons'
     | '/projects'
     | '/works'
+    | '/admin/cvs/new'
+    | '/admin/educations/new'
+    | '/admin/hackathons/new'
+    | '/admin/profiles/new'
+    | '/admin/projects/new'
     | '/admin/skills/new'
+    | '/admin/works/new'
+    | '/admin/cvs'
     | '/admin/educations'
     | '/admin/hackathons'
-    | '/admin/posts'
+    | '/admin/profiles'
     | '/admin/projects'
     | '/admin/skills'
     | '/admin/works'
+    | '/admin/cvs/$id/edit'
+    | '/admin/educations/$id/edit'
+    | '/admin/hackathons/$id/edit'
+    | '/admin/profiles/$id/edit'
+    | '/admin/projects/$id/edit'
     | '/admin/skills/$id/edit'
+    | '/admin/works/$id/edit'
+    | '/admin/profiles/$id'
   id:
     | '__root__'
     | '/_guest'
@@ -371,14 +535,28 @@ export interface FileRouteTypes {
     | '/_portofolio/hackathons/'
     | '/_portofolio/projects/'
     | '/_portofolio/works/'
+    | '/_protected/admin/cvs/new'
+    | '/_protected/admin/educations/new'
+    | '/_protected/admin/hackathons/new'
+    | '/_protected/admin/profiles/new'
+    | '/_protected/admin/projects/new'
     | '/_protected/admin/skills/new'
+    | '/_protected/admin/works/new'
+    | '/_protected/admin/cvs/'
     | '/_protected/admin/educations/'
     | '/_protected/admin/hackathons/'
-    | '/_protected/admin/posts/'
+    | '/_protected/admin/profiles/'
     | '/_protected/admin/projects/'
     | '/_protected/admin/skills/'
     | '/_protected/admin/works/'
+    | '/_protected/admin/cvs/$id/edit'
+    | '/_protected/admin/educations/$id/edit'
+    | '/_protected/admin/hackathons/$id/edit'
+    | '/_protected/admin/profiles/$id/edit'
+    | '/_protected/admin/projects/$id/edit'
     | '/_protected/admin/skills/$id/edit'
+    | '/_protected/admin/works/$id/edit'
+    | '/_protected/admin/profiles/$id/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -544,11 +722,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_protected/admin/cvs/': {
+      id: '/_protected/admin/cvs/'
+      path: '/admin/cvs'
+      fullPath: '/admin/cvs/'
+      preLoaderRoute: typeof ProtectedAdminCvsIndexRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/cvs/new': {
+      id: '/_protected/admin/cvs/new'
+      path: '/admin/cvs/new'
+      fullPath: '/admin/cvs/new'
+      preLoaderRoute: typeof ProtectedAdminCvsNewRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
     '/_protected/admin/educations/': {
       id: '/_protected/admin/educations/'
       path: '/admin/educations'
       fullPath: '/admin/educations/'
       preLoaderRoute: typeof ProtectedAdminEducationsIndexRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/educations/new': {
+      id: '/_protected/admin/educations/new'
+      path: '/admin/educations/new'
+      fullPath: '/admin/educations/new'
+      preLoaderRoute: typeof ProtectedAdminEducationsNewRouteImport
       parentRoute: typeof ProtectedRoute
     }
     '/_protected/admin/hackathons/': {
@@ -558,11 +757,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedAdminHackathonsIndexRouteImport
       parentRoute: typeof ProtectedRoute
     }
-    '/_protected/admin/posts/': {
-      id: '/_protected/admin/posts/'
-      path: '/admin/posts'
-      fullPath: '/admin/posts/'
-      preLoaderRoute: typeof ProtectedAdminPostsIndexRouteImport
+    '/_protected/admin/hackathons/new': {
+      id: '/_protected/admin/hackathons/new'
+      path: '/admin/hackathons/new'
+      fullPath: '/admin/hackathons/new'
+      preLoaderRoute: typeof ProtectedAdminHackathonsNewRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/profiles/': {
+      id: '/_protected/admin/profiles/'
+      path: '/admin/profiles'
+      fullPath: '/admin/profiles/'
+      preLoaderRoute: typeof ProtectedAdminProfilesIndexRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/profiles/new': {
+      id: '/_protected/admin/profiles/new'
+      path: '/admin/profiles/new'
+      fullPath: '/admin/profiles/new'
+      preLoaderRoute: typeof ProtectedAdminProfilesNewRouteImport
       parentRoute: typeof ProtectedRoute
     }
     '/_protected/admin/projects/': {
@@ -570,6 +783,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/projects'
       fullPath: '/admin/projects/'
       preLoaderRoute: typeof ProtectedAdminProjectsIndexRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/projects/new': {
+      id: '/_protected/admin/projects/new'
+      path: '/admin/projects/new'
+      fullPath: '/admin/projects/new'
+      preLoaderRoute: typeof ProtectedAdminProjectsNewRouteImport
       parentRoute: typeof ProtectedRoute
     }
     '/_protected/admin/skills/': {
@@ -593,11 +813,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedAdminWorksIndexRouteImport
       parentRoute: typeof ProtectedRoute
     }
+    '/_protected/admin/works/new': {
+      id: '/_protected/admin/works/new'
+      path: '/admin/works/new'
+      fullPath: '/admin/works/new'
+      preLoaderRoute: typeof ProtectedAdminWorksNewRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/cvs/$id/edit': {
+      id: '/_protected/admin/cvs/$id/edit'
+      path: '/admin/cvs/$id/edit'
+      fullPath: '/admin/cvs/$id/edit'
+      preLoaderRoute: typeof ProtectedAdminCvsIdEditRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/educations/$id/edit': {
+      id: '/_protected/admin/educations/$id/edit'
+      path: '/admin/educations/$id/edit'
+      fullPath: '/admin/educations/$id/edit'
+      preLoaderRoute: typeof ProtectedAdminEducationsIdEditRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/hackathons/$id/edit': {
+      id: '/_protected/admin/hackathons/$id/edit'
+      path: '/admin/hackathons/$id/edit'
+      fullPath: '/admin/hackathons/$id/edit'
+      preLoaderRoute: typeof ProtectedAdminHackathonsIdEditRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/profiles/$id/': {
+      id: '/_protected/admin/profiles/$id/'
+      path: '/admin/profiles/$id'
+      fullPath: '/admin/profiles/$id/'
+      preLoaderRoute: typeof ProtectedAdminProfilesIdIndexRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/profiles/$id/edit': {
+      id: '/_protected/admin/profiles/$id/edit'
+      path: '/admin/profiles/$id/edit'
+      fullPath: '/admin/profiles/$id/edit'
+      preLoaderRoute: typeof ProtectedAdminProfilesIdEditRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/projects/$id/edit': {
+      id: '/_protected/admin/projects/$id/edit'
+      path: '/admin/projects/$id/edit'
+      fullPath: '/admin/projects/$id/edit'
+      preLoaderRoute: typeof ProtectedAdminProjectsIdEditRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
     '/_protected/admin/skills/$id/edit': {
       id: '/_protected/admin/skills/$id/edit'
       path: '/admin/skills/$id/edit'
       fullPath: '/admin/skills/$id/edit'
       preLoaderRoute: typeof ProtectedAdminSkillsIdEditRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/admin/works/$id/edit': {
+      id: '/_protected/admin/works/$id/edit'
+      path: '/admin/works/$id/edit'
+      fullPath: '/admin/works/$id/edit'
+      preLoaderRoute: typeof ProtectedAdminWorksIdEditRouteImport
       parentRoute: typeof ProtectedRoute
     }
   }
@@ -664,14 +940,28 @@ interface ProtectedRouteChildren {
   ProtectedProfileRoute: typeof ProtectedProfileRoute
   ProtectedAdminAboutRoute: typeof ProtectedAdminAboutRoute
   ProtectedAdminContactRoute: typeof ProtectedAdminContactRoute
+  ProtectedAdminCvsNewRoute: typeof ProtectedAdminCvsNewRoute
+  ProtectedAdminEducationsNewRoute: typeof ProtectedAdminEducationsNewRoute
+  ProtectedAdminHackathonsNewRoute: typeof ProtectedAdminHackathonsNewRoute
+  ProtectedAdminProfilesNewRoute: typeof ProtectedAdminProfilesNewRoute
+  ProtectedAdminProjectsNewRoute: typeof ProtectedAdminProjectsNewRoute
   ProtectedAdminSkillsNewRoute: typeof ProtectedAdminSkillsNewRoute
+  ProtectedAdminWorksNewRoute: typeof ProtectedAdminWorksNewRoute
+  ProtectedAdminCvsIndexRoute: typeof ProtectedAdminCvsIndexRoute
   ProtectedAdminEducationsIndexRoute: typeof ProtectedAdminEducationsIndexRoute
   ProtectedAdminHackathonsIndexRoute: typeof ProtectedAdminHackathonsIndexRoute
-  ProtectedAdminPostsIndexRoute: typeof ProtectedAdminPostsIndexRoute
+  ProtectedAdminProfilesIndexRoute: typeof ProtectedAdminProfilesIndexRoute
   ProtectedAdminProjectsIndexRoute: typeof ProtectedAdminProjectsIndexRoute
   ProtectedAdminSkillsIndexRoute: typeof ProtectedAdminSkillsIndexRoute
   ProtectedAdminWorksIndexRoute: typeof ProtectedAdminWorksIndexRoute
+  ProtectedAdminCvsIdEditRoute: typeof ProtectedAdminCvsIdEditRoute
+  ProtectedAdminEducationsIdEditRoute: typeof ProtectedAdminEducationsIdEditRoute
+  ProtectedAdminHackathonsIdEditRoute: typeof ProtectedAdminHackathonsIdEditRoute
+  ProtectedAdminProfilesIdEditRoute: typeof ProtectedAdminProfilesIdEditRoute
+  ProtectedAdminProjectsIdEditRoute: typeof ProtectedAdminProjectsIdEditRoute
   ProtectedAdminSkillsIdEditRoute: typeof ProtectedAdminSkillsIdEditRoute
+  ProtectedAdminWorksIdEditRoute: typeof ProtectedAdminWorksIdEditRoute
+  ProtectedAdminProfilesIdIndexRoute: typeof ProtectedAdminProfilesIdIndexRoute
 }
 
 const ProtectedRouteChildren: ProtectedRouteChildren = {
@@ -679,14 +969,28 @@ const ProtectedRouteChildren: ProtectedRouteChildren = {
   ProtectedProfileRoute: ProtectedProfileRoute,
   ProtectedAdminAboutRoute: ProtectedAdminAboutRoute,
   ProtectedAdminContactRoute: ProtectedAdminContactRoute,
+  ProtectedAdminCvsNewRoute: ProtectedAdminCvsNewRoute,
+  ProtectedAdminEducationsNewRoute: ProtectedAdminEducationsNewRoute,
+  ProtectedAdminHackathonsNewRoute: ProtectedAdminHackathonsNewRoute,
+  ProtectedAdminProfilesNewRoute: ProtectedAdminProfilesNewRoute,
+  ProtectedAdminProjectsNewRoute: ProtectedAdminProjectsNewRoute,
   ProtectedAdminSkillsNewRoute: ProtectedAdminSkillsNewRoute,
+  ProtectedAdminWorksNewRoute: ProtectedAdminWorksNewRoute,
+  ProtectedAdminCvsIndexRoute: ProtectedAdminCvsIndexRoute,
   ProtectedAdminEducationsIndexRoute: ProtectedAdminEducationsIndexRoute,
   ProtectedAdminHackathonsIndexRoute: ProtectedAdminHackathonsIndexRoute,
-  ProtectedAdminPostsIndexRoute: ProtectedAdminPostsIndexRoute,
+  ProtectedAdminProfilesIndexRoute: ProtectedAdminProfilesIndexRoute,
   ProtectedAdminProjectsIndexRoute: ProtectedAdminProjectsIndexRoute,
   ProtectedAdminSkillsIndexRoute: ProtectedAdminSkillsIndexRoute,
   ProtectedAdminWorksIndexRoute: ProtectedAdminWorksIndexRoute,
+  ProtectedAdminCvsIdEditRoute: ProtectedAdminCvsIdEditRoute,
+  ProtectedAdminEducationsIdEditRoute: ProtectedAdminEducationsIdEditRoute,
+  ProtectedAdminHackathonsIdEditRoute: ProtectedAdminHackathonsIdEditRoute,
+  ProtectedAdminProfilesIdEditRoute: ProtectedAdminProfilesIdEditRoute,
+  ProtectedAdminProjectsIdEditRoute: ProtectedAdminProjectsIdEditRoute,
   ProtectedAdminSkillsIdEditRoute: ProtectedAdminSkillsIdEditRoute,
+  ProtectedAdminWorksIdEditRoute: ProtectedAdminWorksIdEditRoute,
+  ProtectedAdminProfilesIdIndexRoute: ProtectedAdminProfilesIdIndexRoute,
 }
 
 const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(

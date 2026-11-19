@@ -259,17 +259,6 @@ const HACKATHONS = [
 	},
 ] as const;
 
-const BLOG_CATEGORIES = [
-	{ name: "React", slug: "react" },
-	{ name: "Next.js", slug: "nextjs" },
-	{ name: "TypeScript", slug: "typescript" },
-	{ name: "Node.js", slug: "nodejs" },
-	{ name: "Python", slug: "python" },
-] as const;
-
-const BLOG_COUNT = 8;
-const MAX_COMMENTS_PER_POST = 4;
-
 const DEFAULT_EMAIL = "laurentmwn@gmail.com";
 const DEFAULT_PASSWORD = "@Labeya123";
 
@@ -433,76 +422,6 @@ async function hackathonSeeder() {
 	);
 }
 
-async function blogCategorySeeder() {
-	await Promise.all(
-		BLOG_CATEGORIES.map((category) =>
-			prisma.category.create({
-				data: {
-					title: category.name,
-					slug: category.slug,
-					description: faker.lorem.sentence(),
-					isPublished: true,
-				},
-			})
-		)
-	);
-}
-
-async function blogSeeder() {
-	const categories = await prisma.category.findMany();
-
-	const posts = Array.from({ length: BLOG_COUNT }).map(() => {
-		const title = faker.lorem.sentence({ min: 8, max: 14 }).replace(/\.$/, "");
-		return {
-			title,
-			slug: slugify(title),
-			description: faker.lorem.sentence({ min: 12, max: 20 }),
-			content: faker.lorem.paragraphs({ min: 4, max: 8 }, "\n\n"),
-			isPublished: faker.datatype.boolean(),
-			createdAt: faker.date.past({ years: 2 }),
-			categoryId: faker.helpers.arrayElement(categories)?.id,
-		};
-	});
-
-	await Promise.all(
-		posts.map((blog) =>
-			prisma.post.create({
-				data: {
-					title: blog.title,
-					slug: blog.slug,
-					description: blog.description,
-					content: blog.content,
-					isPublished: blog.isPublished,
-					createdAt: blog.createdAt,
-					updatedAt: blog.createdAt,
-					categoryId: blog.categoryId,
-				},
-			})
-		)
-	);
-}
-
-async function blogCommentSeeder() {
-	const posts = await prisma.post.findMany();
-	const categories = await prisma.category.findMany();
-
-	await Promise.all(
-		posts.flatMap((post) =>
-			Array.from({ length: faker.number.int({ min: 0, max: MAX_COMMENTS_PER_POST }) }).map(() =>
-				prisma.postComment.create({
-					data: {
-						postId: post.id,
-						username: faker.internet.username(),
-						content: faker.lorem.sentence({ min: 5, max: 15 }),
-						categoryId: faker.helpers.arrayElement(categories)?.id,
-						createdAt: faker.date.recent({ days: 60 }),
-						updatedAt: faker.date.recent({ days: 60 }),
-					},
-				})
-			)
-		)
-	);
-}
 
 async function main() {
 	await authSeeder();
@@ -511,9 +430,6 @@ async function main() {
 	await educationSeeder();
 	await projectSeeder();
 	await hackathonSeeder();
-	await blogCategorySeeder();
-	await blogSeeder();
-	await blogCommentSeeder();
 }
 
 main()
